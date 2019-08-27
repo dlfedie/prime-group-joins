@@ -27,11 +27,20 @@ JOIN "orders" ON "addresses".id = "orders".address_id
 GROUP BY "customers".first_name, "customers".last_name;
 
 
-
-
 -- 6. How many customers do we have?
+SELECT COUNT("customers".id) AS "Customer_Count" FROM "customers";
+
+
 -- 7. How many products do we carry?
+SELECT COUNT("products".id) AS "total_products" FROM "products";
+
 -- 8. What is the total available on-hand quantity of diet pepsi?
+SELECT SUM("warehouse_product".on_hand) AS "diet_pepsi_on_hand", "products".description FROM "products"
+JOIN "warehouse_product" ON "warehouse_product".product_id = "products".id
+WHERE "products".description = 'diet pepsi'
+GROUP BY "products".id;
+
+
 -- Stretch
 -- 9. How much was the total cost for each order?
 -- 10. How much has each customer spent in total?
